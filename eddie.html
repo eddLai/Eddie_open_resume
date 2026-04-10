@@ -629,57 +629,6 @@
     font-style: normal;
   }
 
-  /* ========= SKILLS ========= */
-  .skills-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 2px;
-    background: var(--ink);
-    border: 1px solid var(--ink);
-    margin-top: 8px;
-  }
-  .skill-card {
-    background: var(--paper);
-    padding: 22px 24px 26px;
-    position: relative;
-  }
-  .skill-card::before {
-    content: attr(data-num);
-    position: absolute;
-    top: 16px; right: 18px;
-    font-family: "JetBrains Mono", monospace;
-    font-size: 10px;
-    color: var(--muted);
-    letter-spacing: .1em;
-  }
-  .skill-card h4 {
-    font-family: "JetBrains Mono", monospace;
-    font-size: 10px;
-    letter-spacing: .22em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 10px;
-  }
-  html[lang="zh-Hant"] .skill-card h4 {
-    font-family: "Noto Serif TC", monospace;
-    font-size: 12px;
-    letter-spacing: .14em;
-  }
-  .skill-card p {
-    font-family: "Fraunces", "Noto Serif TC", serif;
-    font-weight: 400;
-    font-size: 17px;
-    line-height: 1.4;
-    color: var(--ink);
-  }
-  html[lang="zh-Hant"] .skill-card p {
-    font-family: "Noto Serif TC", serif;
-    font-size: 15.5px;
-    line-height: 1.65;
-  }
-  .skill-card p em { font-style: italic; color: var(--ink-2); }
-  html[lang="zh-Hant"] .skill-card p em { font-style: normal; color: var(--muted); }
-
   /* ========= AWARDS ========= */
   .award-list { list-style: none; padding: 0; }
   .award-list li {
@@ -963,42 +912,113 @@
     <section class="panel" id="skills">
       <div class="sec-head">
         <div>
-          <span class="kicker" data-zh="第三章 · 工具庫">Chapter 03 · Instrumentarium</span>
+          <span class="kicker" data-zh="第三章 · 技術棧">Chapter 03 · Stack</span>
           <h2 data-zh="技術 <em>能力</em>">Technical <em>Skills</em></h2>
         </div>
         <div></div>
-        <div class="folio" data-zh="第 03 章 / 共 06 章<br>技術棧 · 工具鏈">F–03 / 06<br>STACK · TOOLCHAIN</div>
+        <div class="folio" data-zh="第 03 章 / 共 06 章<br>嵌入式 · ML · 生醫訊號 · 軟體">F–03 / 06<br>EMBEDDED · ML · BIOSIGNAL · SW</div>
       </div>
 
-      <div class="skills-grid">
-        <div class="skill-card" data-num="/01">
-          <h4 data-zh="核心研究">Core Research</h4>
-          <p data-zh="強化學習 <em>(D4PG)</em>、BMI / HMI、嵌入式 AI、數位分身">Reinforcement Learning <em>(D4PG)</em>, BMI / HMI, Embedded AI, Digital Twins</p>
+      <p class="lede" style="margin-bottom:32px" data-zh="從 EMG 電極到 FPGA 嵌入式部署的端到端生醫系統經驗。以下依<b>行業領域</b>分類，粗體為深度專精。">
+        End-to-end biomedical systems experience, from EMG electrodes to embedded FPGA deployment. Organized by <b>industry domain</b>; bold items are deep expertise.
+      </p>
+
+      <style>
+        .skill-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; background: var(--ink); border: 1px solid var(--ink); margin-bottom: 24px; }
+        .skill-domain { background: var(--paper); padding: 28px 26px 30px; position: relative; }
+        .skill-domain::before {
+          content: attr(data-num);
+          position: absolute;
+          top: 18px; right: 20px;
+          font-family: "JetBrains Mono", monospace;
+          font-size: 10px;
+          color: var(--muted);
+          letter-spacing: .12em;
+        }
+        .skill-domain h4 {
+          font-family: "JetBrains Mono", monospace;
+          font-size: 10px;
+          letter-spacing: .22em;
+          text-transform: uppercase;
+          color: var(--accent);
+          margin-bottom: 14px;
+        }
+        html[lang="zh-Hant"] .skill-domain h4 { font-family: "Noto Serif TC", monospace; font-size: 12px; letter-spacing: .14em; }
+
+        .skill-primary {
+          font-family: "Fraunces", "Noto Serif TC", serif;
+          font-weight: 600;
+          font-size: 18px;
+          line-height: 1.55;
+          color: var(--ink);
+          margin-bottom: 10px;
+        }
+        html[lang="zh-Hant"] .skill-primary { font-family: "Noto Serif TC", serif; font-size: 16px; line-height: 1.7; }
+        .skill-primary em { font-style: italic; color: var(--accent); font-weight: 400; }
+        html[lang="zh-Hant"] .skill-primary em { font-style: normal; }
+
+        .skill-secondary {
+          font-family: "JetBrains Mono", monospace;
+          font-size: 10px;
+          letter-spacing: .1em;
+          color: var(--muted);
+          line-height: 2;
+        }
+        html[lang="zh-Hant"] .skill-secondary { font-family: "Noto Serif TC", monospace; font-size: 12px; letter-spacing: .04em; }
+        .skill-secondary span { display: inline-block; margin-right: 6px; }
+        .skill-secondary span::before { content: "· "; opacity: .5; }
+
+        @media (max-width: 640px) {
+          .skill-grid { grid-template-columns: 1fr; }
+        }
+      </style>
+
+      <div class="skill-grid">
+
+        <div class="skill-domain" data-num="/01">
+          <h4 data-zh="嵌入式系統 / 韌體">Embedded Systems / Firmware</h4>
+          <div class="skill-primary" data-zh="<b>Xilinx FPGA</b> <em>KV260 / KD240</em> (Vivado / Vitis)<br><b>Nordic IoT</b> · 即時閉環控制韌體">
+            <b>Xilinx FPGA</b> <em>KV260 / KD240</em> (Vivado / Vitis)<br>
+            <b>Nordic IoT</b> &middot; real-time closed-loop firmware
+          </div>
+          <div class="skill-secondary" data-zh="<span>ESP32</span><span>MSP430</span><span>Jetson Nano</span><span>Raspberry Pi</span><span>ROS</span>">
+            <span>ESP32</span><span>MSP430</span><span>Jetson Nano</span><span>Raspberry Pi</span><span>ROS</span>
+          </div>
         </div>
-        <div class="skill-card" data-num="/02">
-          <h4 data-zh="硬體平台">Hardware Platforms</h4>
-          <p data-zh="Xilinx FPGA <em>(KV260 / KD240、Vivado / Vitis)</em>、Nordic、ESP32、MSP430、Jetson Nano、Raspberry Pi">Xilinx FPGA <em>(KV260 / KD240, Vivado / Vitis)</em>, Nordic, ESP32, MSP430, Jetson Nano, Raspberry Pi</p>
+
+        <div class="skill-domain" data-num="/02">
+          <h4 data-zh="機器學習 / AI">Machine Learning / AI</h4>
+          <div class="skill-primary" data-zh="<b>D4PG 分散式深度 RL</b><br><b>PyTorch</b> · TCN 時序迴歸 · Transformers">
+            <b>D4PG distributed deep RL</b><br>
+            <b>PyTorch</b> &middot; TCN time-series regression &middot; Transformers
+          </div>
+          <div class="skill-secondary" data-zh="<span>無標記 3D 姿態估測</span><span>EMG 意圖預測</span><span>Vicon 驗證</span>">
+            <span>markerless 3D pose estimation</span><span>EMG-based motion intent prediction</span><span>Vicon validation</span>
+          </div>
         </div>
-        <div class="skill-card" data-num="/03">
-          <h4 data-zh="訊號與模擬">Signal &amp; Simulation</h4>
-          <p data-zh="EMG <em>(自製 1 kHz 設備)</em>、LFP、spike sorting、OpenSim、SCONE、Hill-type 肌肉模型">EMG <em>(custom 1 kHz rig)</em>, LFP, spike sorting, OpenSim, SCONE, Hill-type muscle models</p>
+
+        <div class="skill-domain" data-num="/03">
+          <h4 data-zh="生醫訊號 / 模擬">Biomedical Signal / Simulation</h4>
+          <div class="skill-primary" data-zh="<b>EMG</b> <em>— 自製 1 kHz 無線擷取</em><br><b>OpenSim + SCONE</b> · Hill-type · <b>數位分身</b>">
+            <b>EMG</b> <em>&mdash; custom 1 kHz wireless acquisition</em><br>
+            <b>OpenSim + SCONE</b> &middot; Hill-type &middot; <b>Digital twins</b>
+          </div>
+          <div class="skill-secondary" data-zh="<span>LFP</span><span>spike sorting</span><span>電極製造</span><span>TI LMP91000 AFE</span><span>生化穿戴感測</span>">
+            <span>LFP</span><span>spike sorting</span><span>electrode fabrication</span><span>TI LMP91000 AFE</span><span>biochemical wearable</span>
+          </div>
         </div>
-        <div class="skill-card" data-num="/04">
-          <h4 data-zh="機器學習 / 電腦視覺">Machine Learning / CV</h4>
-          <p data-zh="PyTorch、TCN、Transformers、無標記 3D 姿態估測">PyTorch, TCN, Transformers, markerless 3D pose estimation</p>
+
+        <div class="skill-domain" data-num="/04">
+          <h4 data-zh="軟體工程 / 硬體 CAD">Software Engineering / Hardware CAD</h4>
+          <div class="skill-primary" data-zh="<b>C++</b> · <b>Python</b> · JavaScript<br>Docker · Git · Slurm">
+            <b>C++</b> &middot; <b>Python</b> &middot; JavaScript<br>
+            Docker &middot; Git &middot; Slurm
+          </div>
+          <div class="skill-secondary" data-zh="<span>KiCAD</span><span>PCB 佈局</span><span>AutoCAD</span><span>Shape3D</span><span>3D 列印</span><span>VR (Meta Quest 3)</span>">
+            <span>KiCAD</span><span>PCB layout</span><span>AutoCAD</span><span>Shape3D</span><span>3D printing</span><span>VR (Meta Quest 3)</span>
+          </div>
         </div>
-        <div class="skill-card" data-num="/05">
-          <h4 data-zh="軟體 / DevOps">Software &amp; DevOps</h4>
-          <p data-zh="C++、Python、JavaScript、Docker、Git、Slurm、ROS、X11">C++, Python, JavaScript, Docker, Git, Slurm, ROS, X11</p>
-        </div>
-        <div class="skill-card" data-num="/06">
-          <h4 data-zh="硬體 CAD">Hardware CAD</h4>
-          <p data-zh="KiCAD、AutoCAD、Shape3D、3D 列印、PCB 佈局">KiCAD, AutoCAD, Shape3D, 3D printing, PCB layout</p>
-        </div>
-        <div class="skill-card" data-num="/07">
-          <h4 data-zh="其他">Other</h4>
-          <p data-zh="VR <em>(Meta Quest 3)</em>、國科會計畫預算與 BOM 管理">VR <em>(Meta Quest 3)</em>, NSTC project budget &amp; BOM management</p>
-        </div>
+
       </div>
     </section>
 
