@@ -500,6 +500,98 @@
   }
   .block-body li b { color: var(--ink); font-weight: 600; }
 
+  /* ========= EDUCATION STATS ========= */
+  .edu-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 1px;
+    background: var(--ink);
+    border: 1px solid var(--ink);
+    margin: 18px 0 26px;
+  }
+  .edu-stats > div {
+    background: var(--paper);
+    padding: 18px 18px 20px;
+    text-align: center;
+  }
+  .edu-stats b {
+    display: block;
+    font-family: "Fraunces", serif;
+    font-variation-settings: "opsz" 144;
+    font-weight: 900;
+    font-style: italic;
+    font-size: 42px;
+    line-height: 1;
+    color: var(--accent);
+    letter-spacing: -.02em;
+    margin-bottom: 6px;
+  }
+  .edu-stats span {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 9px;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: var(--muted);
+    line-height: 1.4;
+    display: block;
+  }
+  html[lang="zh-Hant"] .edu-stats span {
+    font-family: "Noto Serif TC", monospace;
+    font-size: 11px;
+    letter-spacing: .06em;
+  }
+  .edu-stats .unit {
+    font-family: "JetBrains Mono", monospace;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 18px;
+    color: var(--muted);
+    margin-left: 2px;
+  }
+
+  /* coursework rows inside sub-role */
+  .course-row {
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    gap: 14px;
+    align-items: baseline;
+    padding: 7px 0;
+    border-bottom: 1px dotted var(--hair);
+    font-size: 15.5px;
+  }
+  .course-row:last-child { border-bottom: none; }
+  .course-row .name { color: var(--ink); }
+  .course-row .name .mark {
+    display: inline-block;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 9px;
+    letter-spacing: .1em;
+    color: var(--accent-2);
+    padding: 1px 5px;
+    border: 1px solid var(--accent-2);
+    margin-left: 6px;
+    transform: translateY(-1px);
+  }
+  .course-row .grade {
+    font-family: "JetBrains Mono", monospace;
+    font-weight: 500;
+    font-size: 13px;
+    color: var(--accent);
+    letter-spacing: .04em;
+    min-width: 32px;
+    text-align: right;
+  }
+  .course-row .credits {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: .08em;
+    min-width: 26px;
+    text-align: right;
+  }
+  html[lang="zh-Hant"] .course-row { font-size: 15px; line-height: 1.7; }
+  html[lang="zh-Hant"] .course-row .name { font-family: "Noto Serif TC", serif; }
+
   a {
     color: var(--ink);
     text-decoration: none;
@@ -927,13 +1019,152 @@
           <span class="date">2021 — 2026</span>
           <span class="tag" data-zh="學士 + 碩士">BS + MS</span>
           <span class="tag accent">4 + 1</span>
+          <span class="tag" data-zh="碩 GPA 3.95">MS GPA 3.95</span>
         </div>
         <div class="block-body">
           <h3 data-zh="國立陽明交通大學 <em>(NYCU)</em>">National Yang Ming Chiao Tung University <em>(NYCU)</em></h3>
           <div class="role" data-zh="生醫工程 學士 + 碩士 — 五年一貫 4+1 學程（進行中）">BS + MS, Biomedical Engineering — Five-year Integrated 4+1 Program (in progress)</div>
-          <p class="lede" data-zh="五年一貫加速學程，融合扎實的生醫工程基礎與神經工程、嵌入式 AI、復健機器人領域的深度專精。">
-            An accelerated five-year track blending rigorous biomedical fundamentals
-            with deep specialization in neural engineering, embedded AI, and rehabilitation robotics.
+          <p class="lede" data-zh="五年一貫加速學程。大學部即先修多門研究所課程並抵免學分；碩士班選修直接對應 ExoPulse 的進階課程 — 從外骨骼分析、計算神經科學到高齡感測技術 — 幾乎全數 A / A+。">
+            An accelerated five-year track. Pre-loaded graduate coursework while still an undergraduate and transferred it for MS credit; the Master's electives map directly onto ExoPulse — exoskeleton analysis, computational neuroscience, ML for biomed, elder-care sensing — earning near-uniform A / A+ marks.
+          </p>
+
+          <div class="edu-stats">
+            <div>
+              <b>3.95<span class="unit">/4</span></b>
+              <span data-zh="碩一 GPA">Master's GPA</span>
+            </div>
+            <div>
+              <b>148</b>
+              <span data-zh="學士班總學分">Undergrad credits</span>
+            </div>
+            <div>
+              <b>3</b>
+              <span data-zh="大學部修研所課程">Grad courses as undergrad</span>
+            </div>
+            <div>
+              <b>6+</b>
+              <span data-zh="全英語授課課程">English-taught courses</span>
+            </div>
+          </div>
+
+          <div class="sub-role">
+            <h4 data-zh="機器人、外骨骼與訊號 — 直接對應 ExoPulse">Robotics, Exoskeleton &amp; Signals — Direct ExoPulse Alignment</h4>
+            <div class="course-row">
+              <span class="name" data-zh="外骨骼機器分析與應用 <span class='mark'>GRAD · EN</span>">Exoskeleton Analysis &amp; Applications <span class="mark">GRAD · EN</span></span>
+              <span class="grade">A</span>
+              <span class="credits">3cr</span>
+            </div>
+            <div class="course-row">
+              <span class="name" data-zh="多模態感測技術於高齡醫材開發">Multimodal Sensing for Elder Medical Device Development</span>
+              <span class="grade">A+</span>
+              <span class="credits">3cr</span>
+            </div>
+            <div class="course-row">
+              <span class="name" data-zh="智慧醫材機械設計">Intelligent Medical Device Mechanical Design</span>
+              <span class="grade">A-</span>
+              <span class="credits">3cr</span>
+            </div>
+            <div class="course-row">
+              <span class="name" data-zh="量測及儀表 <span class='mark'>EN</span>">Measurement &amp; Instrumentation <span class="mark">EN</span></span>
+              <span class="grade">A</span>
+              <span class="credits">3cr</span>
+            </div>
+            <div class="course-row">
+              <span class="name" data-zh="機動學 <span class='mark'>EN</span>">Mechanism Design <span class="mark">EN</span></span>
+              <span class="grade">B+</span>
+              <span class="credits">3cr</span>
+            </div>
+          </div>
+
+          <div class="sub-role">
+            <h4 data-zh="AI、機器學習與神經工程">AI, Machine Learning &amp; Neural Engineering</h4>
+            <div class="course-row">
+              <span class="name" data-zh="神經工程">Neural Engineering</span>
+              <span class="grade">A+</span>
+              <span class="credits">3cr</span>
+            </div>
+            <div class="course-row">
+              <span class="name" data-zh="計算神經科學 <span class='mark'>GRAD · EN</span>">Computational Neuroscience <span class="mark">GRAD · EN</span></span>
+              <span class="grade">A+</span>
+              <span class="credits">3cr</span>
+            </div>
+            <div class="course-row">
+              <span class="name" data-zh="機器學習與生醫應用">Machine Learning for Biomedical Applications</span>
+              <span class="grade">A+</span>
+              <span class="credits">3cr</span>
+            </div>
+            <div class="course-row">
+              <span class="name" data-zh="深度學習與生醫應用">Deep Learning for Biomedical Applications</span>
+              <span class="grade">A</span>
+              <span class="credits">3cr</span>
+            </div>
+            <div class="course-row">
+              <span class="name" data-zh="神經科學資料分析 <span class='mark'>GRAD · EN</span>">Neuroscience Data Analysis <span class="mark">GRAD · EN</span></span>
+              <span class="grade">A+</span>
+              <span class="credits">2cr</span>
+            </div>
+            <div class="course-row">
+              <span class="name" data-zh="仿生科技">Bionics</span>
+              <span class="grade">A+</span>
+              <span class="credits">3cr</span>
+            </div>
+          </div>
+
+          <div class="sub-role">
+            <h4 data-zh="創業 · 法規 · IP — 支持創辦人角色">Founder Track — Regulation, IP &amp; Commercialization</h4>
+            <div class="course-row">
+              <span class="name" data-zh="醫療器材上市法規實作">Medical Device Market Regulation Practice</span>
+              <span class="grade">A-</span>
+              <span class="credits">3cr</span>
+            </div>
+            <div class="course-row">
+              <span class="name" data-zh="智慧財產權">Intellectual Property</span>
+              <span class="grade">A+</span>
+              <span class="credits">2cr</span>
+            </div>
+            <div class="course-row">
+              <span class="name" data-zh="腫瘤醫學的工程與科技應用">Engineering &amp; Tech Applications in Oncology</span>
+              <span class="grade">A+</span>
+              <span class="credits">3cr</span>
+            </div>
+            <div class="course-row">
+              <span class="name" data-zh="醫學工程實務">Medical Engineering Practice</span>
+              <span class="grade">A+</span>
+              <span class="credits">1cr</span>
+            </div>
+          </div>
+
+          <div class="sub-role">
+            <h4 data-zh="生醫基礎與研究方法">Core Biomedical &amp; Research Methods</h4>
+            <div class="course-row">
+              <span class="name" data-zh="組織工程與再生醫學">Tissue Engineering &amp; Regenerative Medicine</span>
+              <span class="grade">A</span>
+              <span class="credits">3cr</span>
+            </div>
+            <div class="course-row">
+              <span class="name" data-zh="工程數學（一）(二) <span class='mark'>GRAD</span>">Engineering Mathematics I &amp; II <span class="mark">GRAD</span></span>
+              <span class="grade">A / A</span>
+              <span class="credits">6cr</span>
+            </div>
+            <div class="course-row">
+              <span class="name" data-zh="科技論文導讀 <span class='mark'>EN</span>">Scientific Paper Reading <span class="mark">EN</span></span>
+              <span class="grade">A+</span>
+              <span class="credits">2cr</span>
+            </div>
+            <div class="course-row">
+              <span class="name" data-zh="生物統計學">Biostatistics</span>
+              <span class="grade">B+</span>
+              <span class="credits">3cr</span>
+            </div>
+            <div class="course-row">
+              <span class="name" data-zh="專題研究（一）～（四）">Undergraduate Research Project I – IV</span>
+              <span class="grade">A+</span>
+              <span class="credits">4cr</span>
+            </div>
+          </div>
+
+          <p style="margin-top: 18px; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: .12em; color: var(--muted); text-transform: uppercase;" data-zh="<span style='font-family: Noto Serif TC, monospace; font-size: 12px; letter-spacing: .04em; text-transform: none;'>註記 — <b style='color: var(--accent-2)'>GRAD</b> = 大學部時期即修習之研究所課程 · <b style='color: var(--accent-2)'>EN</b> = 全英語授課</span>">
+            Legend — <b style="color: var(--accent-2)">GRAD</b> = graduate-level course taken during undergrad · <b style="color: var(--accent-2)">EN</b> = English-taught
           </p>
         </div>
       </div>
