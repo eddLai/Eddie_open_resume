@@ -1069,24 +1069,79 @@
     }
     html[lang="zh-Hant"] .qa-lede { font-style: normal; font-size: 16px; line-height: 1.8; }
     .qa-lede b { color: var(--ink); font-weight: 500; font-style: normal; }
-    .qa-mount { position: relative; min-height: 180px; }
-    .qa-loading {
-      font-family: "Newsreader", "Noto Serif TC", serif;
-      font-style: italic;
-      font-size: 14px;
-      letter-spacing: .04em;
-      color: var(--muted);
-      padding: 28px 0;
-      border-top: 1px dashed var(--hair);
-      border-bottom: 1px dashed var(--hair);
-      text-align: center;
+
+    .qa-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 32px; margin-bottom: 18px; }
+    .qa-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      padding: 18px 28px 19px;
+      background: var(--ink);
+      color: var(--paper);
+      font-family: "JetBrains Mono", monospace;
+      font-size: 12px;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: 1px solid var(--ink);
+      box-shadow: 6px 6px 0 var(--accent);
+      transition: transform .25s ease, box-shadow .25s ease;
     }
-    html[lang="zh-Hant"] .qa-loading { font-style: normal; letter-spacing: .15em; }
-    .qa-loading::before,
-    .qa-loading::after { content: "  ·  "; opacity: .5; }
-    .qa-mount.loaded .qa-loading { display: none; }
-    .qa-mount .giscus,
-    .qa-mount .giscus-frame { max-width: 100% !important; width: 100% !important; }
+    html[lang="zh-Hant"] .qa-cta {
+      font-family: "Noto Serif TC", monospace;
+      font-size: 13px;
+      letter-spacing: .12em;
+    }
+    .qa-cta:hover {
+      transform: translate(-3px, -3px);
+      box-shadow: 9px 9px 0 var(--accent);
+    }
+    .qa-cta .glyph { font-size: 16px; line-height: 1; }
+    .qa-cta .arrow { transition: transform .25s ease; display: inline-block; }
+    .qa-cta:hover .arrow { transform: translateX(6px); }
+
+    .qa-browse {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 10px;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      border-bottom: 1px dashed var(--hair);
+      padding-bottom: 3px;
+      transition: color .2s ease, border-color .2s ease;
+    }
+    html[lang="zh-Hant"] .qa-browse {
+      font-family: "Noto Serif TC", monospace;
+      font-size: 12px;
+      letter-spacing: .08em;
+      text-transform: none;
+    }
+    .qa-browse:hover { color: var(--accent); border-bottom-color: var(--accent); }
+
+    .qa-fineprint {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 10px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 24px;
+      padding-top: 18px;
+      border-top: 1px dashed var(--hair);
+      max-width: 640px;
+      line-height: 1.8;
+    }
+    html[lang="zh-Hant"] .qa-fineprint {
+      font-family: "Noto Serif TC", monospace;
+      font-size: 12px;
+      letter-spacing: .06em;
+      text-transform: none;
+    }
+
+    @media (max-width: 640px) {
+      .qa-actions { gap: 20px; }
+      .qa-cta { padding: 14px 20px; font-size: 11px; }
+    }
     @media print { .qa { display: none !important; } }
   </style>
 
@@ -1100,41 +1155,25 @@
       <div class="folio" data-zh="附錄 A<br>讀者來信">APPENDIX · A<br>LETTERS TO THE EDITOR</div>
     </div>
 
-    <p class="qa-lede" data-zh="臨床試驗單位、研究合作者、同行護理師 — 在下方留下問題或想法。<b>來信透過 GitHub Discussions 傳遞</b>，請備好你的 handle。">
-      Clinical research teams, collaborators, and fellow nurses &mdash; drop a question or a note below. <b>Letters are routed through GitHub Discussions.</b> Bring your handle.
+    <p class="qa-lede" data-zh="臨床試驗單位、研究合作者、同行護理師 — 有問題或想法，歡迎透過 <b>GitHub Discussions</b> 傳訊。不需要 email 往返，也會公開讓其他讀者看到對話。">
+      Clinical research teams, collaborators, and fellow nurses &mdash; send a note through <b>GitHub Discussions</b>. No email ping-pong, and the thread stays visible for other readers.
     </p>
 
-    <div class="qa-mount" id="qa-mount">
-      <div class="qa-loading" data-zh="正在載入來信">loading correspondence</div>
-      <script src="https://giscus.app/client.js"
-              data-repo="eddLai/open_resume"
-              data-repo-id="REPLACE_WITH_REPO_ID"
-              data-category="Q&A"
-              data-category-id="REPLACE_WITH_CATEGORY_ID"
-              data-mapping="specific"
-              data-term="christina-dossier"
-              data-strict="0"
-              data-reactions-enabled="1"
-              data-emit-metadata="0"
-              data-input-position="top"
-              data-theme="https://eddlai.github.io/open_resume/giscus-christina.css"
-              data-lang="en"
-              crossorigin="anonymous"
-              async>
-      </script>
+    <div class="qa-actions">
+      <a class="qa-cta" href="https://github.com/eddLai/open_resume/discussions/new?category=q-a" target="_blank" rel="noopener">
+        <span class="glyph">✉</span>
+        <span data-zh="寄出一則訊息">Send a message</span>
+        <span class="arrow">→</span>
+      </a>
+      <a class="qa-browse" href="https://github.com/eddLai/open_resume/discussions" target="_blank" rel="noopener" data-zh="瀏覽既有對話 →">
+        Browse previous letters →
+      </a>
     </div>
-  </section>
 
-  <script>
-    // Hide QA loading placeholder once Giscus posts its first resize message
-    window.addEventListener('message', (e) => {
-      if (e.origin === 'https://giscus.app' && e.data && e.data.giscus) {
-        document.getElementById('qa-mount')?.classList.add('loaded');
-      }
-    });
-    // Fallback: hide after 4s even if no message arrives
-    setTimeout(() => document.getElementById('qa-mount')?.classList.add('loaded'), 4000);
-  </script>
+    <p class="qa-fineprint" data-zh="需要 GitHub 帳號 · 由 Christina 親自回覆">
+      GitHub account required · Replied to personally by Christina
+    </p>
+  </section>
 
   <!-- ============ COLOPHON ============ -->
   <footer class="colophon">
