@@ -1276,6 +1276,115 @@
     html[lang="zh-Hant"] .qa-lede { font-style: normal; font-size: 16px; line-height: 1.8; }
     .qa-lede b { color: var(--ink); font-weight: 500; font-style: normal; }
 
+    /* ========== LETTER FEED ========== */
+    .qa-letters { margin-bottom: 40px; }
+    .qa-status {
+      font-family: "Newsreader", "Noto Serif TC", serif;
+      font-style: italic;
+      font-size: 15px;
+      color: var(--muted);
+      padding: 36px 0;
+      text-align: center;
+      border-top: 1px dashed var(--hair);
+      border-bottom: 1px dashed var(--hair);
+      letter-spacing: .03em;
+    }
+    html[lang="zh-Hant"] .qa-status { font-style: normal; }
+    .qa-status .pulse { display: inline-block; opacity: .4; animation: qaPulse 1.6s ease-in-out infinite; }
+    @keyframes qaPulse { 0%, 100% { opacity: .3 } 50% { opacity: .9 } }
+
+    .qa-letter {
+      padding: 30px 0;
+      border-bottom: 1px dashed var(--hair);
+    }
+    .qa-letter:first-child { border-top: 1px dashed var(--hair); }
+
+    .qa-letter-meta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px;
+      font-family: "JetBrains Mono", monospace;
+      font-size: 10px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 14px;
+    }
+    html[lang="zh-Hant"] .qa-letter-meta {
+      font-family: "Noto Serif TC", monospace;
+      font-size: 12px;
+      letter-spacing: .05em;
+      text-transform: none;
+    }
+    .qa-avatar {
+      width: 26px;
+      height: 26px;
+      border-radius: 2px;
+      border: 1px solid rgba(14,26,43,.18);
+      display: block;
+    }
+    .qa-handle { color: var(--ink); font-weight: 500; }
+    .qa-sep { opacity: .45; }
+    .qa-replies { color: var(--accent); }
+    .qa-replies.zero { color: var(--muted); }
+
+    .qa-letter-title {
+      font-family: "Fraunces", "Noto Serif TC", serif;
+      font-weight: 400;
+      font-size: clamp(20px, 2.1vw, 26px);
+      line-height: 1.28;
+      letter-spacing: -.01em;
+      margin-bottom: 12px;
+    }
+    html[lang="zh-Hant"] .qa-letter-title {
+      font-family: "Noto Serif TC", serif;
+      font-weight: 500;
+      letter-spacing: .02em;
+    }
+    .qa-letter-title a {
+      color: var(--ink);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: color .2s ease, border-color .2s ease;
+    }
+    .qa-letter-title a:hover {
+      color: var(--accent);
+      border-bottom-color: var(--accent);
+    }
+
+    .qa-letter-body {
+      font-family: "Newsreader", "Noto Serif TC", serif;
+      font-size: 16px;
+      line-height: 1.65;
+      color: var(--ink-2);
+      margin-bottom: 14px;
+      max-width: 680px;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+    html[lang="zh-Hant"] .qa-letter-body { font-size: 15.5px; line-height: 1.8; }
+
+    .qa-letter-link {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 10px;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px dashed var(--accent);
+      padding-bottom: 2px;
+      transition: color .2s ease, border-color .2s ease;
+    }
+    html[lang="zh-Hant"] .qa-letter-link {
+      font-family: "Noto Serif TC", monospace;
+      font-size: 12px;
+      letter-spacing: .06em;
+      text-transform: none;
+    }
+    .qa-letter-link:hover { color: var(--ink); border-bottom-color: var(--ink); }
+
+    /* ========== ACTIONS ========== */
     .qa-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 32px; margin-bottom: 18px; }
     .qa-cta {
       display: inline-flex;
@@ -1347,6 +1456,7 @@
     @media (max-width: 640px) {
       .qa-actions { gap: 20px; }
       .qa-cta { padding: 14px 20px; font-size: 11px; }
+      .qa-letter { padding: 22px 0; }
     }
     @media print { .qa { display: none !important; } }
   </style>
@@ -1361,25 +1471,149 @@
       <div class="folio" data-zh="附錄 A<br>開放通信">APPENDIX · A<br>OPEN CORRESPONDENCE</div>
     </div>
 
-    <p class="qa-lede" data-zh="投資人、臨床合作夥伴、同行研究者 — 有問題或想法，歡迎透過 <b>GitHub Discussions</b> 傳訊。不需要 email 往返，也會公開讓其他讀者看到對話。">
-      Investors, clinical collaborators, fellow researchers &mdash; send a note through <b>GitHub Discussions</b>. No email ping-pong, and the thread stays visible for other readers.
+    <p class="qa-lede" data-zh="投資人、臨床合作夥伴、同行研究者 — 歡迎公開提問或留下想法。近期來信會顯示在下方，完整對話在 GitHub。">
+      Investors, clinical collaborators, fellow researchers &mdash; ask a question or leave a note in the open. Recent letters are printed below; the full threads live on GitHub.
     </p>
 
+    <div class="qa-letters"
+         id="qa-letters"
+         data-owner="eddLai"
+         data-repo="open_resume"
+         data-label="eddie">
+      <div class="qa-status"><span class="pulse" data-zh="·&nbsp;&nbsp;正在載入來信&nbsp;&nbsp;·">·&nbsp;&nbsp;loading letters&nbsp;&nbsp;·</span></div>
+    </div>
+
     <div class="qa-actions">
-      <a class="qa-cta" href="https://github.com/eddLai/open_resume/discussions/new?category=q-a" target="_blank" rel="noopener">
+      <a class="qa-cta" href="https://github.com/eddLai/open_resume/issues/new?labels=eddie&title=%5BOffice+Hours%5D+" target="_blank" rel="noopener">
         <span class="glyph">✉</span>
-        <span data-zh="寄出一則訊息">Send a message</span>
+        <span data-zh="寄出一封新信">Write a letter</span>
         <span class="arrow">→</span>
       </a>
-      <a class="qa-browse" href="https://github.com/eddLai/open_resume/discussions" target="_blank" rel="noopener" data-zh="瀏覽既有對話 →">
-        Browse previous letters →
+      <a class="qa-browse" href="https://github.com/eddLai/open_resume/issues?q=is%3Aissue+label%3Aeddie" target="_blank" rel="noopener" data-zh="在 GitHub 上瀏覽全部 →">
+        Browse the full archive on GitHub →
       </a>
     </div>
 
-    <p class="qa-fineprint" data-zh="需要 GitHub 帳號 · 討論由 Eddie 親自回覆">
-      GitHub account required · Replied to personally by Eddie
+    <p class="qa-fineprint" data-zh="需要 GitHub 帳號才能寫信 · 讀信不需登入 · 由 Eddie 親自回覆">
+      GitHub account required to write · Reading needs no login · Replied to personally by Eddie
     </p>
   </section>
+
+  <script>
+    // ========== QA LETTER FEED ==========
+    // Fetches recent GitHub Issues with the configured label and renders
+    // them in editorial style. Cached in localStorage (5 min TTL).
+    (function() {
+      const root = document.getElementById('qa-letters');
+      if (!root) return;
+
+      const owner = root.dataset.owner;
+      const repo = root.dataset.repo;
+      const label = root.dataset.label;
+      const cacheKey = 'qa-cache-' + owner + '-' + repo + '-' + label;
+      const cacheTTL = 5 * 60 * 1000;
+      const perPage = 5;
+
+      function esc(s) {
+        return String(s == null ? '' : s).replace(/[&<>"']/g, c => ({
+          '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
+        })[c]);
+      }
+
+      function stripPrefix(title) {
+        return title.replace(/^\s*\[[^\]]+\]\s*/, '').trim() || title;
+      }
+
+      function relTime(iso) {
+        const d = new Date(iso);
+        const s = (Date.now() - d.getTime()) / 1000;
+        const zh = document.documentElement.lang === 'zh-Hant';
+        if (s < 60)       return zh ? '剛剛'                         : 'just now';
+        if (s < 3600)     return Math.floor(s/60)    + (zh ? ' 分鐘前' : 'm ago');
+        if (s < 86400)    return Math.floor(s/3600)  + (zh ? ' 小時前' : 'h ago');
+        if (s < 2592000)  return Math.floor(s/86400) + (zh ? ' 天前'   : 'd ago');
+        if (s < 31536000) return Math.floor(s/2592000) + (zh ? ' 個月前' : 'mo ago');
+        return Math.floor(s/31536000) + (zh ? ' 年前' : 'y ago');
+      }
+
+      function renderStatus(msg, zhMsg) {
+        root.innerHTML = '<div class="qa-status" data-zh="' + esc(zhMsg) + '">' + esc(msg) + '</div>';
+      }
+
+      function render(issues) {
+        if (!Array.isArray(issues) || issues.length === 0) {
+          renderStatus(
+            '— no letters yet · be the first to write one —',
+            '— 還沒有來信 · 成為第一封吧 —'
+          );
+          return;
+        }
+        const html = issues.map(i => {
+          const title = stripPrefix(i.title || '');
+          const body = (i.body || '').trim();
+          const preview = body.length > 320 ? body.slice(0, 320).trim() + '…' : body;
+          const replies = i.comments || 0;
+          const zeroCls = replies === 0 ? ' zero' : '';
+          const avatar = i.user && i.user.avatar_url ? i.user.avatar_url + '&s=56' : '';
+          const handle = i.user && i.user.login ? i.user.login : 'anon';
+          const url = i.html_url || '#';
+          return (
+            '<article class="qa-letter">' +
+              '<header class="qa-letter-meta">' +
+                (avatar ? '<img class="qa-avatar" src="' + esc(avatar) + '" alt="" loading="lazy">' : '') +
+                '<span class="qa-handle">@' + esc(handle) + '</span>' +
+                '<span class="qa-sep">·</span>' +
+                '<time datetime="' + esc(i.created_at) + '">' + esc(relTime(i.created_at)) + '</time>' +
+                '<span class="qa-sep">·</span>' +
+                '<span class="qa-replies' + zeroCls + '">' + replies + (replies === 1 ? ' reply' : ' replies') + '</span>' +
+              '</header>' +
+              '<h3 class="qa-letter-title"><a href="' + esc(url) + '" target="_blank" rel="noopener">' + esc(title) + '</a></h3>' +
+              (preview ? '<p class="qa-letter-body">' + esc(preview) + '</p>' : '') +
+              '<a class="qa-letter-link" href="' + esc(url) + '" target="_blank" rel="noopener">Read the full letter →</a>' +
+            '</article>'
+          );
+        }).join('');
+        root.innerHTML = html;
+      }
+
+      // Try cache first
+      try {
+        const cached = JSON.parse(localStorage.getItem(cacheKey) || 'null');
+        if (cached && (Date.now() - cached.ts < cacheTTL)) {
+          render(cached.data);
+          return;
+        }
+      } catch (e) {}
+
+      const url = 'https://api.github.com/repos/' + owner + '/' + repo +
+                  '/issues?labels=' + encodeURIComponent(label) +
+                  '&state=all&sort=created&direction=desc&per_page=' + perPage;
+
+      fetch(url, { headers: { 'Accept': 'application/vnd.github+json' } })
+        .then(r => {
+          if (r.status === 403 || r.status === 429) throw new Error('rate');
+          if (!r.ok) throw new Error('http-' + r.status);
+          return r.json();
+        })
+        .then(data => {
+          try { localStorage.setItem(cacheKey, JSON.stringify({ ts: Date.now(), data })); } catch (e) {}
+          render(data);
+        })
+        .catch(err => {
+          if (err.message === 'rate') {
+            renderStatus(
+              '— GitHub rate limit reached · please visit the archive on GitHub —',
+              '— GitHub 速率限制 · 請直接到 GitHub 查看 —'
+            );
+          } else {
+            renderStatus(
+              '— could not load letters · the archive is still on GitHub —',
+              '— 無法載入來信 · 可直接到 GitHub 查看 —'
+            );
+          }
+        });
+    })();
+  </script>
 
   <!-- ============ COLOPHON ============ -->
   <footer class="colophon">
