@@ -1718,7 +1718,7 @@
       const owner = root.dataset.owner;
       const repo = root.dataset.repo;
       const label = root.dataset.label;
-      const cacheKey = 'qa-cache-' + owner + '-' + repo + '-' + label;
+      const cacheKey = 'qa-cache-v2-' + owner + '-' + repo + '-' + label;
       const cacheTTL = 5 * 60 * 1000;
       const perPage = 5;
 
@@ -1795,7 +1795,7 @@
 
       const url = 'https://api.github.com/repos/' + owner + '/' + repo +
                   '/issues?labels=' + encodeURIComponent(label) +
-                  '&state=all&sort=created&direction=desc&per_page=' + perPage;
+                  '&state=open&sort=created&direction=desc&per_page=' + perPage;
 
       fetch(url, { headers: { 'Accept': 'application/vnd.github+json' } })
         .then(r => {
